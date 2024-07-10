@@ -38,6 +38,14 @@ following dependency in the project's POM file:
 
 Be sure to update to the appropriate version number.
 
+With Laconic Logging, you can log an error message as follows:
+
+```java
+  import net.filipvanlaenen.laconic.Laconic;
+
+  Laconic.LOGGER.logError("Something wrong happened."); 
+```
+
 ## Projects Using Laconic Logging
 
 The following projects use Laconic Logging:
