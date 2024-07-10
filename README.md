@@ -43,7 +43,29 @@ With Laconic Logging, you can log an error message as follows:
 ```java
   import net.filipvanlaenen.laconic.Laconic;
 
-  Laconic.LOGGER.logError("Something wrong happened."); 
+  Laconic.LOGGER.logError("Something went wrong."); 
+```
+
+This will print the following to `System.err`:
+
+```
+Something went wrong.
+```
+
+You can refer to messages that you logged before through a token like this:
+
+```java
+        Token token = Laconic.LOGGER.logMessage("Something happened.");
+        Laconic.LOGGER.logMessage("Something else happened.", token);
+        Laconic.LOGGER.logError("Something went wrong.", token);
+```
+
+This will print the following to `System.err`:
+
+```
+Something happened.
+Something else happened.
+Something went wrong.
 ```
 
 ## Projects Using Laconic Logging
