@@ -13,14 +13,23 @@ public class Laconic {
     /**
      * A PrintStream to which the log messages can be appended.
      */
-    private PrintStream appender = System.err;
+    private PrintStream printStream = System.err;
 
     /**
-     * Logs an error to the appender.
+     * Logs an error.
      *
      * @param message The message describing the error.
      */
     public void logError(final String message) {
-        appender.println(message);
+        printStream.println(message);
+    }
+
+    /**
+     * Sets the PrintStream to which the log messages can be appended.
+     *
+     * @param printStream The PrintStream to which the log messages can be appended.
+     */
+    public void setPrintStream(final PrintStream printStream) {
+        this.printStream = printStream;
     }
 }
