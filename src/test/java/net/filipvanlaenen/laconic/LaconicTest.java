@@ -35,4 +35,31 @@ public class LaconicTest {
         Laconic.LOGGER.logError("Something else went wrong.");
         assertEquals("Something went wrong.\nSomething else went wrong.\n", outputStream.toString());
     }
+
+    /**
+     * Verifies that a log message can be logged along an error message.
+     */
+    @Test
+    public void logErrorShouldLogALogMessageAlongAnErrorMessage() {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        Laconic.LOGGER.setPrintStream(printStream);
+        Token token = Laconic.LOGGER.logMessage("Something happened.");
+        Laconic.LOGGER.logError("Something went wrong.", token);
+        assertEquals("Something happened.\nSomething went wrong.\n", outputStream.toString());
+    }
+
+    /**
+     * Verifies that two log messages can be logged along an error message.
+     */
+    @Test
+    public void logErrorShouldLogTwoLogMessagesAlongAnErrorMessage() {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        Laconic.LOGGER.setPrintStream(printStream);
+        Token token = Laconic.LOGGER.logMessage("Something happened.");
+        Laconic.LOGGER.logMessage("Something else happened.", token);
+        Laconic.LOGGER.logError("Something went wrong.", token);
+        assertEquals("Something happened.\nSomething else happened.\nSomething went wrong.\n", outputStream.toString());
+    }
 }
