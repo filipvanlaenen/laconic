@@ -55,9 +55,12 @@ Something went wrong.
 You can refer to messages that you logged before through a token like this:
 
 ```java
-        Token token = Laconic.LOGGER.logMessage("Something happened.");
-        Laconic.LOGGER.logMessage("Something else happened.", token);
-        Laconic.LOGGER.logError("Something went wrong.", token);
+  import net.filipvanlaenen.laconic.Laconic;
+  import net.filipvanlaenen.laconic.Token;
+
+  Token token = Laconic.LOGGER.logMessage("Something happened.");
+  Laconic.LOGGER.logMessage("Something else happened.", token);
+  Laconic.LOGGER.logError("Something went wrong.", token);
 ```
 
 This will print the following to `System.err`:
