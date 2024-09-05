@@ -8,8 +8,13 @@ This project is inspired by the talk
 [Nick Chapsas](https://x.com/nickchapsas) given at the [Copenhagen Developers Festival](https://cphdevfest.com/fest) in
 2023.
 
+* [Overview](#overview)
 * [Getting Started](#getting-started)
 * [Projects Using Laconic](#projects-using-laconic)
+
+## Overview
+
+![Overview](Overview.png)
 
 ## Getting Started
 
