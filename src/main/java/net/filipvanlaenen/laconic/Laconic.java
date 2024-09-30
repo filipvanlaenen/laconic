@@ -16,6 +16,9 @@ public class Laconic {
      * A PrintStream to which the log messages can be appended.
      */
     private PrintStream printStream = System.err;
+    /**
+     * Tracks whether or not messages have been logged so far.
+     */
     private boolean hasLogged = false;
 
     /**
