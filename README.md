@@ -10,6 +10,8 @@ This project is inspired by the talk
 
 * [Overview](#overview)
 * [Getting Started](#getting-started)
+* [Logging Error Messages](#logging-error-messages)
+* [Logging Progress](#logging-progress)
 * [Projects Using Laconic](#projects-using-laconic)
 
 ## Overview
@@ -42,6 +44,8 @@ following dependency in the project's POM file:
 ```
 
 Be sure to update to the appropriate version number.
+
+## Logging Error Messages
 
 With Laconic Logging, you can log an error message as follows:
 
@@ -127,6 +131,8 @@ This will print the following messages to `System.err`:
 ‡ ⬐ Something else happened.
 ‡ Something else went wrong.
 ```
+
+## Logging Progress
 
 Sometimes you want to log progress, regardless of whether an error has occured or not. This can be done as follows:
 
