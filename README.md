@@ -71,8 +71,8 @@ You can refer to messages that you logged before through a token like this:
 This will print the following messages to `System.err`:
 
 ```
-Something happened.
-Something else happened.
+ Something happened.
+⬐Something else happened.
 Something went wrong.
 ```
 

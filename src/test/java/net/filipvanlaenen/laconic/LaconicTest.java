@@ -16,11 +16,12 @@ public class LaconicTest {
      */
     @Test
     public void logErrorShouldLogAnErrorMessage() {
+        Laconic laconic = new Laconic();
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
-        Laconic.LOGGER.setPrintStream(printStream);
-        Laconic.LOGGER.logError("Something went wrong.");
-        assertEquals("Something went wrong.\n", outputStream.toString());
+        laconic.setPrintStream(printStream);
+        laconic.logError("Foo");
+        assertEquals("Foo\n", outputStream.toString());
     }
 
     /**
@@ -28,38 +29,27 @@ public class LaconicTest {
      */
     @Test
     public void logErrorShouldLogTwoErrorMessages() {
+        Laconic laconic = new Laconic();
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
-        Laconic.LOGGER.setPrintStream(printStream);
-        Laconic.LOGGER.logError("Something went wrong.");
-        Laconic.LOGGER.logError("Something else went wrong.");
-        assertEquals("Something went wrong.\nSomething else went wrong.\n", outputStream.toString());
-    }
-
-    /**
-     * Verifies that a log message can be logged along an error message.
-     */
-    @Test
-    public void logErrorShouldLogALogMessageAlongAnErrorMessage() {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream printStream = new PrintStream(outputStream);
-        Laconic.LOGGER.setPrintStream(printStream);
-        Token token = Laconic.LOGGER.logMessage("Something happened.");
-        Laconic.LOGGER.logError("Something went wrong.", token);
-        assertEquals("Something happened.\nSomething went wrong.\n", outputStream.toString());
+        laconic.setPrintStream(printStream);
+        laconic.logError("Foo");
+        laconic.logError("Bar");
+        assertEquals("Foo\n\nBar\n", outputStream.toString());
     }
 
     /**
      * Verifies that two log messages can be logged along an error message.
      */
     @Test
-    public void logErrorShouldLogTwoLogMessagesAlongAnErrorMessage() {
+    public void logErrorShouldLogALogMessageAlongAnErrorMessage() {
+        Laconic laconic = new Laconic();
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
-        Laconic.LOGGER.setPrintStream(printStream);
-        Token token = Laconic.LOGGER.logMessage("Something happened.");
-        Laconic.LOGGER.logMessage("Something else happened.", token);
-        Laconic.LOGGER.logError("Something went wrong.", token);
-        assertEquals("Something happened.\nSomething else happened.\nSomething went wrong.\n", outputStream.toString());
+        laconic.setPrintStream(printStream);
+        Token token = laconic.logMessage("Foo");
+        laconic.logMessage("Bar", token);
+        laconic.logError("Baz", token);
+        assertEquals(" Foo\n⬐Bar\nBaz\n", outputStream.toString());
     }
 }

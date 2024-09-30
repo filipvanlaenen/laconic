@@ -2,6 +2,8 @@ package net.filipvanlaenen.laconic;
 
 import java.io.PrintStream;
 
+import net.filipvanlaenen.kolektoj.OrderedCollection;
+
 /**
  * Base class for the logging operations.
  */
@@ -14,6 +16,7 @@ public class Laconic {
      * A PrintStream to which the log messages can be appended.
      */
     private PrintStream printStream = System.err;
+    private boolean hasLogged = false;
 
     /**
      * Logs an error.
@@ -22,19 +25,28 @@ public class Laconic {
      * @param tokens  The tokens with log messages that are relevant for this error.
      */
     public void logError(final String message, final Token... tokens) {
+        if (hasLogged) {
+            printStream.println();
+        }
         for (Token token : tokens) {
-            for (String m : token.getMessages()) {
-                printStream.println(m);
+            OrderedCollection<String> messages = token.getMessages();
+            int lastIndex = messages.size() - 1;
+            for (int i = 0; i < lastIndex; i++) {
+                printStream.print(" ");
+                printStream.println(messages.getAt(i));
             }
+            printStream.print("⬐");
+            printStream.println(messages.getAt(lastIndex));
         }
         printStream.println(message);
+        hasLogged = true;
     }
 
     /**
      * Logs a message and creates a new token.
      *
      * @param message A message to be logged.
-     * @param tokens The tokens to which this message should be added.
+     * @param tokens  The tokens to which this message should be added.
      * @return A token for this log message.
      */
     public Token logMessage(final String message, final Token... tokens) {
