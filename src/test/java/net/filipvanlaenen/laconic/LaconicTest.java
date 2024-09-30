@@ -20,6 +20,7 @@ public class LaconicTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
+        laconic.setAddTimestamp(false);
         laconic.logError("Foo");
         assertEquals("‡ Foo\n", outputStream.toString());
     }
@@ -33,6 +34,7 @@ public class LaconicTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
+        laconic.setAddTimestamp(false);
         laconic.logError("Foo");
         laconic.logError("Bar");
         assertEquals("‡ Foo\n\n‡ Bar\n", outputStream.toString());
@@ -47,6 +49,7 @@ public class LaconicTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
+        laconic.setAddTimestamp(false);
         Token token = laconic.logMessage("Foo");
         laconic.logMessage("Bar", token);
         laconic.logError("Baz", token);
@@ -62,6 +65,7 @@ public class LaconicTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
+        laconic.setAddTimestamp(false);
         Token token1 = laconic.logMessage("Foo");
         laconic.logMessage("Bar", token1);
         Token token2 = laconic.logMessage("Qux");
@@ -79,6 +83,7 @@ public class LaconicTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
+        laconic.setAddTimestamp(false);
         Token token = laconic.logMessage("Foo");
         laconic.logMessage("Bar", token);
         laconic.logError("Baz", token);
@@ -95,6 +100,7 @@ public class LaconicTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
+        laconic.setAddTimestamp(false);
         laconic.logProgress("Foo");
         assertEquals("Foo\n", outputStream.toString());
     }
@@ -108,6 +114,7 @@ public class LaconicTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
+        laconic.setAddTimestamp(false);
         laconic.logProgress("Foo");
         laconic.logProgress("Bar");
         assertEquals("Foo\nBar\n", outputStream.toString());
@@ -122,6 +129,7 @@ public class LaconicTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
+        laconic.setAddTimestamp(false);
         laconic.logProgress("Foo");
         laconic.logProgress("Bar");
         Token token = laconic.logMessage("Baz");

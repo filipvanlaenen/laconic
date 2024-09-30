@@ -1,6 +1,8 @@
 package net.filipvanlaenen.laconic;
 
 import java.io.PrintStream;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 import net.filipvanlaenen.kolektoj.OrderedCollection;
 
@@ -8,6 +10,8 @@ import net.filipvanlaenen.kolektoj.OrderedCollection;
  * Base class for the logging operations.
  */
 public class Laconic {
+    private static final SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+
     /**
      * Enumeration with the states for the logger.
      */
@@ -38,6 +42,7 @@ public class Laconic {
      * Tracks the state of the logger.
      */
     private State state = State.EMPTY;
+    private boolean addTimestamp = true;
 
     /**
      * Logs an error.
@@ -53,12 +58,15 @@ public class Laconic {
             OrderedCollection<String> messages = token.getMessages();
             int lastIndex = messages.size() - 1;
             for (int i = 0; i < lastIndex; i++) {
+                printTimestamp();
                 printStream.print("‡   ");
                 printStream.println(messages.getAt(i));
             }
+            printTimestamp();
             printStream.print("‡ ⬐ ");
             printStream.println(messages.getAt(lastIndex));
         }
+        printTimestamp();
         printStream.print("‡ ");
         printStream.println(message);
         state = State.ERROR_LOGGED;
@@ -89,8 +97,17 @@ public class Laconic {
         if (state == State.ERROR_LOGGED) {
             printStream.println();
         }
+        printTimestamp();
         printStream.println(message);
         state = State.PROGRESS_LOGGED;
+    }
+
+    private void printTimestamp() {
+        if (addTimestamp) {
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            printStream.print(sdf2.format(timestamp));
+            printStream.print(" ");
+        }
     }
 
     /**
@@ -100,5 +117,9 @@ public class Laconic {
      */
     public void setPrintStream(final PrintStream printStream) {
         this.printStream = printStream;
+    }
+
+    public void setAddTimestamp(final boolean addTimestamp) {
+        this.addTimestamp = addTimestamp;
     }
 }

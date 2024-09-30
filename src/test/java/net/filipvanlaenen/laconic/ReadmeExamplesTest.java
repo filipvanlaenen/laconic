@@ -20,6 +20,7 @@ public class ReadmeExamplesTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
+        laconic.setAddTimestamp(false);
         // Start README example 1
         laconic.logError("Something went wrong.");
         // End README example 1
@@ -35,6 +36,7 @@ public class ReadmeExamplesTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
+        laconic.setAddTimestamp(false);
         // Start README example 2
         Token token = laconic.logMessage("Something happened.");
         laconic.logMessage("Something else happened.", token);
@@ -53,6 +55,7 @@ public class ReadmeExamplesTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
+        laconic.setAddTimestamp(false);
         // Start README example 3
         Token token1 = laconic.logMessage("Something happened.");
         laconic.logMessage("Something else happened.", token1);
@@ -75,6 +78,7 @@ public class ReadmeExamplesTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
+        laconic.setAddTimestamp(false);
         // Start README example 4
         Token token = laconic.logMessage("Something happened.");
         laconic.logMessage("Something else happened.", token);
@@ -97,6 +101,7 @@ public class ReadmeExamplesTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
+        laconic.setAddTimestamp(false);
         // Start README example 2
         laconic.logProgress("Starting.");
 
