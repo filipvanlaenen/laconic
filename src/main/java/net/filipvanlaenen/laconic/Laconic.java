@@ -10,7 +10,10 @@ import net.filipvanlaenen.kolektoj.OrderedCollection;
  * Base class for the logging operations.
  */
 public class Laconic {
-    private static final SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+    /**
+     * The format for the timestamp.
+     */
+    private static final SimpleDateFormat TIMESTAMP_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
 
     /**
      * Enumeration with the states for the logger.
@@ -42,7 +45,10 @@ public class Laconic {
      * Tracks the state of the logger.
      */
     private State state = State.EMPTY;
-    private boolean addTimestamp = true;
+    /**
+     * Whether messages should be prefixed with a timestamp.
+     */
+    private boolean prefixWithTimestamp = true;
 
     /**
      * Logs an error.
@@ -103,11 +109,20 @@ public class Laconic {
     }
 
     private void printTimestamp() {
-        if (addTimestamp) {
+        if (prefixWithTimestamp) {
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            printStream.print(sdf2.format(timestamp));
+            printStream.print(TIMESTAMP_FORMAT.format(timestamp));
             printStream.print(" ");
         }
+    }
+
+    /**
+     * Sets whether the messages should be prefixed with a timestamp.
+     *
+     * @param prefixWithTimestamp Whether the messages should be prefixed with a timestamp.
+     */
+    public void setPrefixWithTimestamp(final boolean prefixWithTimestamp) {
+        this.prefixWithTimestamp = prefixWithTimestamp;
     }
 
     /**
@@ -117,9 +132,5 @@ public class Laconic {
      */
     public void setPrintStream(final PrintStream printStream) {
         this.printStream = printStream;
-    }
-
-    public void setAddTimestamp(final boolean addTimestamp) {
-        this.addTimestamp = addTimestamp;
     }
 }
