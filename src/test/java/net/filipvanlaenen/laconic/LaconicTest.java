@@ -21,7 +21,7 @@ public class LaconicTest {
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
         laconic.logError("Foo");
-        assertEquals("Foo\n", outputStream.toString());
+        assertEquals("‡ Foo\n", outputStream.toString());
     }
 
     /**
@@ -35,7 +35,7 @@ public class LaconicTest {
         laconic.setPrintStream(printStream);
         laconic.logError("Foo");
         laconic.logError("Bar");
-        assertEquals("Foo\n\nBar\n", outputStream.toString());
+        assertEquals("‡ Foo\n\n‡ Bar\n", outputStream.toString());
     }
 
     /**
@@ -50,7 +50,7 @@ public class LaconicTest {
         Token token = laconic.logMessage("Foo");
         laconic.logMessage("Bar", token);
         laconic.logError("Baz", token);
-        assertEquals(" Foo\n⬐Bar\nBaz\n", outputStream.toString());
+        assertEquals("‡   Foo\n‡ ⬐ Bar\n‡ Baz\n", outputStream.toString());
     }
 
     /**
@@ -67,7 +67,7 @@ public class LaconicTest {
         Token token2 = laconic.logMessage("Qux");
         laconic.logMessage("Quux", token2);
         laconic.logError("Baz", token1, token2);
-        assertEquals(" Foo\n⬐Bar\n Qux\n⬐Quux\nBaz\n", outputStream.toString());
+        assertEquals("‡   Foo\n‡ ⬐ Bar\n‡   Qux\n‡ ⬐ Quux\n‡ Baz\n", outputStream.toString());
     }
 
     /**
@@ -83,6 +83,6 @@ public class LaconicTest {
         laconic.logMessage("Bar", token);
         laconic.logError("Baz", token);
         laconic.logError("Qux", token);
-        assertEquals(" Foo\n⬐Bar\nBaz\n\n Foo\n⬐Bar\nQux\n", outputStream.toString());
+        assertEquals("‡   Foo\n‡ ⬐ Bar\n‡ Baz\n\n‡   Foo\n‡ ⬐ Bar\n‡ Qux\n", outputStream.toString());
     }
 }

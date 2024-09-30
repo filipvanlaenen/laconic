@@ -54,7 +54,7 @@ With Laconic Logging, you can log an error message as follows:
 This will print the following message to `System.err`:
 
 ```
-Something went wrong.
+‡ Something went wrong.
 ```
 
 You can include messages that you've logged using a token like this:
@@ -71,9 +71,9 @@ You can include messages that you've logged using a token like this:
 This will print the following messages to `System.err`:
 
 ```
- Something happened.
-⬐Something else happened.
-Something went wrong.
+‡   Something happened.
+‡ ⬐ Something else happened.
+‡ Something went wrong.
 ```
 
 Not everything is strictly linear though, and sometimes an error can be caused by more than one thing. You can include
@@ -95,11 +95,11 @@ different lines of messages as follows:
 This will print the following messages to `System.err`:
 
 ```
- Something happened.
-⬐Something else happened.
- Started something else.
-⬐Continued something else.
-Something went wrong.
+‡   Something happened.
+‡ ⬐ Something else happened.
+‡   Started something else.
+‡ ⬐ Continued something else.
+‡ Something went wrong.
 ```
 
 On the other hand, the same line of messages can also cause more than one error:
@@ -119,13 +119,13 @@ On the other hand, the same line of messages can also cause more than one error:
 This will print the following messages to `System.err`:
 
 ```
- Something happened.
-⬐Something else happened.
-Something went wrong.
+‡   Something happened.
+‡ ⬐ Something else happened.
+‡ Something went wrong.
 
- Something happened.
-⬐Something else happened.
-Something else went wrong.
+‡   Something happened.
+‡ ⬐ Something else happened.
+‡ Something else went wrong.
 ```
 
 ## Projects Using Laconic Logging

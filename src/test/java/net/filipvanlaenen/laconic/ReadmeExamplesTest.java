@@ -23,7 +23,7 @@ public class ReadmeExamplesTest {
         // Start README example 1
         laconic.logError("Something went wrong.");
         // End README example 1
-        assertEquals("Something went wrong.\n", outputStream.toString());
+        assertEquals("‡ Something went wrong.\n", outputStream.toString());
     }
 
     /**
@@ -40,7 +40,7 @@ public class ReadmeExamplesTest {
         laconic.logMessage("Something else happened.", token);
         laconic.logError("Something went wrong.", token);
         // End README example 2
-        assertEquals(" Something happened.\n⬐Something else happened.\nSomething went wrong.\n",
+        assertEquals("‡   Something happened.\n‡ ⬐ Something else happened.\n‡ Something went wrong.\n",
                 outputStream.toString());
     }
 
@@ -62,8 +62,8 @@ public class ReadmeExamplesTest {
 
         laconic.logError("Something went wrong.", token1, token2);
         // End README example 2
-        assertEquals(" Something happened.\n" + "⬐Something else happened.\n" + " Started something else.\n"
-                + "⬐Continued something else.\n" + "Something went wrong.\n", outputStream.toString());
+        assertEquals("‡   Something happened.\n" + "‡ ⬐ Something else happened.\n" + "‡   Started something else.\n"
+                + "‡ ⬐ Continued something else.\n" + "‡ Something went wrong.\n", outputStream.toString());
     }
 
     /**
@@ -83,9 +83,8 @@ public class ReadmeExamplesTest {
 
         laconic.logError("Something else went wrong.", token);
         // End README example 2
-        assertEquals(
-                " Something happened.\n" + "⬐Something else happened.\n" + "Something went wrong.\n" + "\n"
-                        + " Something happened.\n" + "⬐Something else happened.\n" + "Something else went wrong.\n",
+        assertEquals("‡   Something happened.\n" + "‡ ⬐ Something else happened.\n" + "‡ Something went wrong.\n" + "\n"
+                + "‡   Something happened.\n" + "‡ ⬐ Something else happened.\n" + "‡ Something else went wrong.\n",
                 outputStream.toString());
     }
 }

@@ -35,12 +35,13 @@ public class Laconic {
             OrderedCollection<String> messages = token.getMessages();
             int lastIndex = messages.size() - 1;
             for (int i = 0; i < lastIndex; i++) {
-                printStream.print(" ");
+                printStream.print("‡   ");
                 printStream.println(messages.getAt(i));
             }
-            printStream.print("⬐");
+            printStream.print("‡ ⬐ ");
             printStream.println(messages.getAt(lastIndex));
         }
+        printStream.print("‡ ");
         printStream.println(message);
         hasLogged = true;
     }
