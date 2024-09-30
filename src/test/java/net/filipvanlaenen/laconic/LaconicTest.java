@@ -42,7 +42,7 @@ public class LaconicTest {
      * Verifies that two log messages can be logged along an error message.
      */
     @Test
-    public void logErrorShouldLogALogMessageAlongAnErrorMessage() {
+    public void logErrorShouldLogLogMessagesAlongAnErrorMessage() {
         Laconic laconic = new Laconic();
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
@@ -51,5 +51,22 @@ public class LaconicTest {
         laconic.logMessage("Bar", token);
         laconic.logError("Baz", token);
         assertEquals(" Foo\n⬐Bar\nBaz\n", outputStream.toString());
+    }
+
+    /**
+     * Verifies that two times two log messages can be logged along an error message.
+     */
+    @Test
+    public void logErrorShouldLogSetsOfLogMessagesAlongAnErrorMessage() {
+        Laconic laconic = new Laconic();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        laconic.setPrintStream(printStream);
+        Token token1 = laconic.logMessage("Foo");
+        laconic.logMessage("Bar", token1);
+        Token token2 = laconic.logMessage("Qux");
+        laconic.logMessage("Quux", token2);
+        laconic.logError("Baz", token1, token2);
+        assertEquals(" Foo\n⬐Bar\n Qux\n⬐Quux\nBaz\n", outputStream.toString());
     }
 }

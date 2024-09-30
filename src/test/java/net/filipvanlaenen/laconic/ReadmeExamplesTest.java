@@ -43,4 +43,26 @@ public class ReadmeExamplesTest {
         assertEquals(" Something happened.\n⬐Something else happened.\nSomething went wrong.\n",
                 outputStream.toString());
     }
+
+    /**
+     * README example 3.
+     */
+    @Test
+    public void readmeExample3() {
+        Laconic laconic = new Laconic();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        laconic.setPrintStream(printStream);
+        // Start README example 2
+        Token token1 = laconic.logMessage("Something happened.");
+        laconic.logMessage("Something else happened.", token1);
+
+        Token token2 = laconic.logMessage("Started something else.");
+        laconic.logMessage("Continued something else.", token2);
+
+        laconic.logError("Something went wrong.", token1, token2);
+        // End README example 2
+        assertEquals(" Something happened.\n" + "⬐Something else happened.\n" + " Started something else.\n"
+                + "⬐Continued something else.\n" + "Something went wrong.\n", outputStream.toString());
+    }
 }

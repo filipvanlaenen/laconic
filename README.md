@@ -57,7 +57,7 @@ This will print the following message to `System.err`:
 Something went wrong.
 ```
 
-You can refer to messages that you logged before through a token like this:
+You can include messages that you've logged using a token like this:
 
 ```java
   import net.filipvanlaenen.laconic.Laconic;
@@ -73,6 +73,32 @@ This will print the following messages to `System.err`:
 ```
  Something happened.
 ⬐Something else happened.
+Something went wrong.
+```
+
+Not everything is strictly linear though, and sometimes an error can be caused more than one thing. You can include
+different lines of messages as follows:
+
+```java
+  import net.filipvanlaenen.laconic.Laconic;
+  import net.filipvanlaenen.laconic.Token;
+
+  Token token1 = Laconic.LOGGER.logMessage("Something happened.");
+  Laconic.LOGGER.logMessage("Something else happened.", token1);
+
+  Token token2 = Laconic.LOGGER.logMessage("Started something else.");
+  Laconic.LOGGER.logMessage("Continued something else.", token2);
+  
+  Laconic.LOGGER.logError("Something went wrong.", token1, token2);
+```
+
+This will print the following messages to `System.err`:
+
+```
+ Something happened.
+⬐Something else happened.
+ Started something else.
+⬐Continued something else.
 Something went wrong.
 ```
 
