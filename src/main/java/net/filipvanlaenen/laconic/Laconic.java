@@ -9,6 +9,24 @@ import net.filipvanlaenen.kolektoj.OrderedCollection;
  */
 public class Laconic {
     /**
+     * Enumeration with the states for the logger.
+     */
+    private enum State {
+        /**
+         * Nothing has been logged yet.
+         */
+        EMPTY,
+        /**
+         * The last message logged was an error message.
+         */
+        ERROR_LOGGED,
+        /**
+         * The last message logged was a progress message.
+         */
+        PROGRESS_LOGGED
+    }
+
+    /**
      * The default object to log to.
      */
     public static final Laconic LOGGER = new Laconic();
@@ -17,9 +35,9 @@ public class Laconic {
      */
     private PrintStream printStream = System.err;
     /**
-     * Tracks whether or not messages have been logged so far.
+     * Tracks the state of the logger.
      */
-    private boolean hasLogged = false;
+    private State state = State.EMPTY;
 
     /**
      * Logs an error.
@@ -28,7 +46,7 @@ public class Laconic {
      * @param tokens  The tokens with log messages that are relevant for this error.
      */
     public void logError(final String message, final Token... tokens) {
-        if (hasLogged) {
+        if (state != State.EMPTY) {
             printStream.println();
         }
         for (Token token : tokens) {
@@ -43,7 +61,7 @@ public class Laconic {
         }
         printStream.print("‡ ");
         printStream.println(message);
-        hasLogged = true;
+        state = State.ERROR_LOGGED;
     }
 
     /**
@@ -60,6 +78,19 @@ public class Laconic {
             t.addMessage(message);
         }
         return token;
+    }
+
+    /**
+     * Logs progress.
+     *
+     * @param message A message to be logged.
+     */
+    public void logProgress(final String message) {
+        if (state == State.ERROR_LOGGED) {
+            printStream.println();
+        }
+        printStream.println(message);
+        state = State.PROGRESS_LOGGED;
     }
 
     /**

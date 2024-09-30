@@ -53,7 +53,7 @@ public class ReadmeExamplesTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
-        // Start README example 2
+        // Start README example 3
         Token token1 = laconic.logMessage("Something happened.");
         laconic.logMessage("Something else happened.", token1);
 
@@ -61,7 +61,7 @@ public class ReadmeExamplesTest {
         laconic.logMessage("Continued something else.", token2);
 
         laconic.logError("Something went wrong.", token1, token2);
-        // End README example 2
+        // End README example 3
         assertEquals("‡   Something happened.\n" + "‡ ⬐ Something else happened.\n" + "‡   Started something else.\n"
                 + "‡ ⬐ Continued something else.\n" + "‡ Something went wrong.\n", outputStream.toString());
     }
@@ -75,16 +75,42 @@ public class ReadmeExamplesTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
-        // Start README example 2
+        // Start README example 4
         Token token = laconic.logMessage("Something happened.");
         laconic.logMessage("Something else happened.", token);
 
         laconic.logError("Something went wrong.", token);
 
         laconic.logError("Something else went wrong.", token);
-        // End README example 2
+        // End README example 4
         assertEquals("‡   Something happened.\n" + "‡ ⬐ Something else happened.\n" + "‡ Something went wrong.\n" + "\n"
                 + "‡   Something happened.\n" + "‡ ⬐ Something else happened.\n" + "‡ Something else went wrong.\n",
+                outputStream.toString());
+    }
+
+    /**
+     * README example 5.
+     */
+    @Test
+    public void readmeExample5() {
+        Laconic laconic = new Laconic();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        laconic.setPrintStream(printStream);
+        // Start README example 2
+        laconic.logProgress("Starting.");
+
+        laconic.logProgress("Doing some work.");
+
+        Token token = laconic.logMessage("Something happened.");
+        laconic.logMessage("Something else happened.", token);
+        laconic.logError("Something went wrong.", token);
+
+        laconic.logProgress("Done.");
+        // End README example 2
+        assertEquals(
+                "Starting.\n" + "Doing some work.\n" + "\n" + "‡   Something happened.\n"
+                        + "‡ ⬐ Something else happened.\n" + "‡ Something went wrong.\n" + "\n" + "Done.\n",
                 outputStream.toString());
     }
 }

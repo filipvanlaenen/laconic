@@ -85,4 +85,50 @@ public class LaconicTest {
         laconic.logError("Qux", token);
         assertEquals("‡   Foo\n‡ ⬐ Bar\n‡ Baz\n\n‡   Foo\n‡ ⬐ Bar\n‡ Qux\n", outputStream.toString());
     }
+
+    /**
+     * Verifies that progress can be logged.
+     */
+    @Test
+    public void logProgressShouldLogProgress() {
+        Laconic laconic = new Laconic();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        laconic.setPrintStream(printStream);
+        laconic.logProgress("Foo");
+        assertEquals("Foo\n", outputStream.toString());
+    }
+
+    /**
+     * Verifies that progress messages can be logged.
+     */
+    @Test
+    public void logProgressShouldLogProgressInBlock() {
+        Laconic laconic = new Laconic();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        laconic.setPrintStream(printStream);
+        laconic.logProgress("Foo");
+        laconic.logProgress("Bar");
+        assertEquals("Foo\nBar\n", outputStream.toString());
+    }
+
+    /**
+     * Verifies that progress and error messages can be logged.
+     */
+    @Test
+    public void logProgressAndErrorsShouldLogInBlocks() {
+        Laconic laconic = new Laconic();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        laconic.setPrintStream(printStream);
+        laconic.logProgress("Foo");
+        laconic.logProgress("Bar");
+        Token token = laconic.logMessage("Baz");
+        laconic.logMessage("Qux", token);
+        laconic.logError("Quux", token);
+        laconic.logProgress("Corge");
+        assertEquals("Foo\n" + "Bar\n" + "\n" + "‡   Baz\n" + "‡ ⬐ Qux\n" + "‡ Quux\n" + "\n" + "Corge\n",
+                outputStream.toString());
+    }
 }

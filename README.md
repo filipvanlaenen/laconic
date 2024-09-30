@@ -128,6 +128,36 @@ This will print the following messages to `System.err`:
 ‡ Something else went wrong.
 ```
 
+Sometimes you want to log progress, regardless of whether an error has occured or not. This can be done as follows:
+
+```java
+  import net.filipvanlaenen.laconic.Laconic;
+  import net.filipvanlaenen.laconic.Token;
+
+  Laconic.LOGGER.logProgress("Starting.");
+
+  Laconic.LOGGER.logProgress("Doing some work.");
+
+  Token token = Laconic.LOGGER.logMessage("Something happened.");
+  Laconic.LOGGER.logMessage("Something else happened.", token);
+  Laconic.LOGGER.logError("Something went wrong.", token);
+
+  Laconic.LOGGER.logProgress("Done.");
+```
+
+This will print the following messages to `System.err`:
+
+```
+Starting.
+Doing some work.
+
+‡   Something happened.
+‡ ⬐ Something else happened.
+‡ Something went wrong.
+
+Done.
+```
+
 ## Projects Using Laconic Logging
 
 The following projects use Laconic Logging:
