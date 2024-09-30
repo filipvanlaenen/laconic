@@ -51,7 +51,7 @@ With Laconic Logging, you can log an error message as follows:
   Laconic.LOGGER.logError("Something went wrong."); 
 ```
 
-This will print the following to `System.err`:
+This will print the following message to `System.err`:
 
 ```
 Something went wrong.
@@ -68,7 +68,7 @@ You can refer to messages that you logged before through a token like this:
   Laconic.LOGGER.logError("Something went wrong.", token);
 ```
 
-This will print the following to `System.err`:
+This will print the following messages to `System.err`:
 
 ```
 Something happened.
