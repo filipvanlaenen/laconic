@@ -76,7 +76,7 @@ This will print the following messages to `System.err`:
 Something went wrong.
 ```
 
-Not everything is strictly linear though, and sometimes an error can be caused more than one thing. You can include
+Not everything is strictly linear though, and sometimes an error can be caused by more than one thing. You can include
 different lines of messages as follows:
 
 ```java
@@ -100,6 +100,32 @@ This will print the following messages to `System.err`:
  Started something else.
 ⬐Continued something else.
 Something went wrong.
+```
+
+On the other hand, the same line of messages can also cause more than one error:
+
+```java
+  import net.filipvanlaenen.laconic.Laconic;
+  import net.filipvanlaenen.laconic.Token;
+
+  Token token = Laconic.LOGGER.logMessage("Something happened.");
+  Laconic.LOGGER.logMessage("Something else happened.", token);
+ 
+  Laconic.LOGGER.logError("Something went wrong.", token);
+
+  Laconic.LOGGER.logError("Something else went wrong.", token);
+```
+
+This will print the following messages to `System.err`:
+
+```
+ Something happened.
+⬐Something else happened.
+Something went wrong.
+
+ Something happened.
+⬐Something else happened.
+Something else went wrong.
 ```
 
 ## Projects Using Laconic Logging
