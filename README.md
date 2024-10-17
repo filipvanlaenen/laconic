@@ -12,7 +12,7 @@ This project is inspired by the talk
 * [Getting Started](#getting-started)
 * [Logging Error Messages](#logging-error-messages)
 * [Logging Progress](#logging-progress)
-* [Projects Using Laconic](#projects-using-laconic)
+* [Projects Using Laconic Logging](#projects-using-laconic-logging)
 
 ## Overview
 
@@ -39,7 +39,7 @@ following dependency in the project's POM file:
   <dependency>
     <groupId>net.filipvanlaenen</groupId>
     <artifactId>laconic</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
   </dependency>
 ```
 
