@@ -61,16 +61,18 @@ public class Laconic {
             printStream.println();
         }
         for (Token token : tokens) {
-            OrderedCollection<String> messages = token.getMessages();
+            OrderedCollection<Message> messages = token.getMessages();
             int lastIndex = messages.size() - 1;
             for (int i = 0; i < lastIndex; i++) {
-                printTimestamp();
+                Message logMessage = messages.getAt(i);
+                printTimestamp(logMessage.timestamp());
                 printStream.print("‡   ");
-                printStream.println(messages.getAt(i));
+                printStream.println(logMessage.message());
             }
-            printTimestamp();
+            Message logMessage = messages.getAt(lastIndex);
+            printTimestamp(logMessage.timestamp());
             printStream.print("‡ ⬐ ");
-            printStream.println(messages.getAt(lastIndex));
+            printStream.println(logMessage.message());
         }
         printTimestamp();
         printStream.print("‡ ");
@@ -108,9 +110,20 @@ public class Laconic {
         state = State.PROGRESS_LOGGED;
     }
 
+    /**
+     * Prints the current timestamp to the internal print stream.
+     */
     private void printTimestamp() {
+        printTimestamp(new Timestamp(System.currentTimeMillis()));
+    }
+
+    /**
+     * Prints a timestamp to the internal print stream.
+     *
+     * @param timestamp A timestamp.
+     */
+    private void printTimestamp(final Timestamp timestamp) {
         if (prefixWithTimestamp) {
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             printStream.print(TIMESTAMP_FORMAT.format(timestamp));
             printStream.print(" ");
         }

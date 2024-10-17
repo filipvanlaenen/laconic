@@ -12,7 +12,7 @@ public class Token {
     /**
      * The messages logged to this token.
      */
-    private ModifiableOrderedCollection<String> messages = new ModifiableOrderedArrayCollection<String>();
+    private ModifiableOrderedCollection<Message> messages = new ModifiableOrderedArrayCollection<Message>();
 
     /**
      * Adds a message to this token.
@@ -20,7 +20,7 @@ public class Token {
      * @param message A message to be added to this token.
      */
     void addMessage(final String message) {
-        messages.add(message);
+        messages.add(new Message(message));
     }
 
     /**
@@ -28,7 +28,7 @@ public class Token {
      *
      * @return The messages logged to this token.
      */
-    OrderedCollection<String> getMessages() {
-        return new OrderedArrayCollection<String>(messages);
+    OrderedCollection<Message> getMessages() {
+        return new OrderedArrayCollection<Message>(messages);
     }
 }

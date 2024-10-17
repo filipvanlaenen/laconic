@@ -1,9 +1,12 @@
 package net.filipvanlaenen.laconic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.Test;
 
@@ -138,5 +141,30 @@ public class LaconicTest {
         laconic.logProgress("Corge");
         assertEquals("Foo\n" + "Bar\n" + "\n" + "‡   Baz\n" + "‡ ⬐ Qux\n" + "‡ Quux\n" + "\n" + "Corge\n",
                 outputStream.toString());
+    }
+
+    /**
+     * Verifies that by default, all messages are prefixed with a timestamp.
+     */
+    @Test
+    public void logMessagesShouldByDefaultBePrefixedWithATimestamp() {
+        Laconic laconic = new Laconic();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        laconic.setPrintStream(printStream);
+        laconic.logProgress("Foo");
+        laconic.logProgress("Bar");
+        Token token = laconic.logMessage("Baz");
+        laconic.logMessage("Qux", token);
+        laconic.logError("Quux", token);
+        laconic.logProgress("Corge");
+        String[] result = outputStream.toString().split("\n");
+        Pattern pattern = Pattern.compile("\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}[\\+-]\\d{2}:\\d{2} .*");
+        for (String line : result) {
+            if (line.length() > 0) {
+                Matcher matcher = pattern.matcher(line);
+                assertTrue(matcher.matches());
+            }
+        }
     }
 }

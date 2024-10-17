@@ -1,5 +1,6 @@
 package net.filipvanlaenen.laconic;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,8 @@ public class TokenTest {
     public void getMessagesShouldReturnALoggedMessage() {
         Token token = new Token();
         token.addMessage("Something happend.");
-        assertTrue(OrderedCollection.of("Something happend.").containsSame(token.getMessages()));
+        OrderedCollection<Message> messages = token.getMessages();
+        assertEquals("Something happend.", messages.getAt(0).message());
     }
 
     /**
@@ -36,7 +38,8 @@ public class TokenTest {
         Token token = new Token();
         token.addMessage("Something happend.");
         token.addMessage("Something else happend.");
-        assertTrue(OrderedCollection.of("Something happend.", "Something else happend.")
-                .containsSame(token.getMessages()));
+        OrderedCollection<Message> messages = token.getMessages();
+        assertEquals("Something happend.", messages.getAt(0).message());
+        assertEquals("Something else happend.", messages.getAt(1).message());
     }
 }
