@@ -58,7 +58,7 @@ With Laconic Logging, you can log an error message as follows:
 This will print the following message to `System.err`:
 
 ```
-‡ Something went wrong.
+2024-10-17T10:09:51.421+02:00 ‡ Something went wrong.
 ```
 
 You can include messages that you've logged using a token like this:
@@ -75,9 +75,9 @@ You can include messages that you've logged using a token like this:
 This will print the following messages to `System.err`:
 
 ```
-‡   Something happened.
-‡ ⬐ Something else happened.
-‡ Something went wrong.
+2024-10-17T10:09:51.432+02:00 ‡   Something happened.
+2024-10-17T10:09:51.432+02:00 ‡ ⬐ Something else happened.
+2024-10-17T10:09:51.432+02:00 ‡ Something went wrong.
 ```
 
 Not everything is strictly linear though, and sometimes an error can be caused by more than one thing. You can include
@@ -99,11 +99,11 @@ different lines of messages as follows:
 This will print the following messages to `System.err`:
 
 ```
-‡   Something happened.
-‡ ⬐ Something else happened.
-‡   Started something else.
-‡ ⬐ Continued something else.
-‡ Something went wrong.
+2024-10-17T10:09:51.434+02:00 ‡   Something happened.
+2024-10-17T10:09:51.434+02:00 ‡ ⬐ Something else happened.
+2024-10-17T10:09:51.434+02:00 ‡   Started something else.
+2024-10-17T10:09:51.434+02:00 ‡ ⬐ Continued something else.
+2024-10-17T10:09:51.434+02:00 ‡ Something went wrong.
 ```
 
 On the other hand, the same line of messages can also cause more than one error:
@@ -123,13 +123,13 @@ On the other hand, the same line of messages can also cause more than one error:
 This will print the following messages to `System.err`:
 
 ```
-‡   Something happened.
-‡ ⬐ Something else happened.
-‡ Something went wrong.
+2024-10-17T10:09:51.437+02:00 ‡   Something happened.
+2024-10-17T10:09:51.437+02:00 ‡ ⬐ Something else happened.
+2024-10-17T10:09:51.437+02:00 ‡ Something went wrong.
 
-‡   Something happened.
-‡ ⬐ Something else happened.
-‡ Something else went wrong.
+2024-10-17T10:09:51.437+02:00 ‡   Something happened.
+2024-10-17T10:09:51.437+02:00 ‡ ⬐ Something else happened.
+2024-10-17T10:09:51.437+02:00 ‡ Something else went wrong.
 ```
 
 ## Logging Progress
@@ -154,14 +154,14 @@ Sometimes you want to log progress, regardless of whether an error has occured o
 This will print the following messages to `System.err`:
 
 ```
-Starting.
-Doing some work.
+2024-10-17T10:09:51.439+02:00 Starting.
+2024-10-17T10:09:51.439+02:00 Doing some work.
 
-‡   Something happened.
-‡ ⬐ Something else happened.
-‡ Something went wrong.
+2024-10-17T10:09:51.439+02:00 ‡   Something happened.
+2024-10-17T10:09:51.439+02:00 ‡ ⬐ Something else happened.
+2024-10-17T10:09:51.439+02:00 ‡ Something went wrong.
 
-Done.
+2024-10-17T10:09:51.439+02:00 Done.
 ```
 
 ## Projects Using Laconic Logging

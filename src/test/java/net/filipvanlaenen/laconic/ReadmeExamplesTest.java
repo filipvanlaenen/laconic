@@ -12,6 +12,11 @@ import org.junit.jupiter.api.Test;
  */
 public class ReadmeExamplesTest {
     /**
+     * Whether or not the messages should be prefixed with a timestamp.
+     */
+    private static final boolean PREFIX_WITH_TIMESTAMP = false;
+
+    /**
      * README example 1.
      */
     @Test
@@ -20,7 +25,7 @@ public class ReadmeExamplesTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
-        laconic.setPrefixWithTimestamp(false);
+        laconic.setPrefixWithTimestamp(PREFIX_WITH_TIMESTAMP);
         // Start README example 1
         laconic.logError("Something went wrong.");
         // End README example 1
@@ -36,7 +41,7 @@ public class ReadmeExamplesTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
-        laconic.setPrefixWithTimestamp(false);
+        laconic.setPrefixWithTimestamp(PREFIX_WITH_TIMESTAMP);
         // Start README example 2
         Token token = laconic.logMessage("Something happened.");
         laconic.logMessage("Something else happened.", token);
@@ -55,7 +60,7 @@ public class ReadmeExamplesTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
-        laconic.setPrefixWithTimestamp(false);
+        laconic.setPrefixWithTimestamp(PREFIX_WITH_TIMESTAMP);
         // Start README example 3
         Token token1 = laconic.logMessage("Something happened.");
         laconic.logMessage("Something else happened.", token1);
@@ -78,7 +83,7 @@ public class ReadmeExamplesTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
-        laconic.setPrefixWithTimestamp(false);
+        laconic.setPrefixWithTimestamp(PREFIX_WITH_TIMESTAMP);
         // Start README example 4
         Token token = laconic.logMessage("Something happened.");
         laconic.logMessage("Something else happened.", token);
@@ -101,7 +106,7 @@ public class ReadmeExamplesTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
-        laconic.setPrefixWithTimestamp(false);
+        laconic.setPrefixWithTimestamp(PREFIX_WITH_TIMESTAMP);
         // Start README example 2
         laconic.logProgress("Starting.");
 
