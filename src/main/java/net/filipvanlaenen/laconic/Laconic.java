@@ -3,6 +3,7 @@ package net.filipvanlaenen.laconic;
 import java.io.PrintStream;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import net.filipvanlaenen.kolektoj.OrderedCollection;
 
@@ -10,6 +11,10 @@ import net.filipvanlaenen.kolektoj.OrderedCollection;
  * Base class for the logging operations.
  */
 public class Laconic {
+    /**
+     * The US locale.
+     */
+    private static final Locale LOCALE = Locale.US;
     /**
      * The format for the timestamp.
      */
@@ -58,7 +63,7 @@ public class Laconic {
      * @param tokens        The tokens with log messages that are relevant for this error.
      */
     public void logError(final String messageFormat, final double number, final Token... tokens) {
-        logError(String.format(messageFormat, number), tokens);
+        logError(String.format(LOCALE, messageFormat, number), tokens);
     }
 
     /**
@@ -69,7 +74,7 @@ public class Laconic {
      * @param tokens        The tokens with log messages that are relevant for this error.
      */
     public void logError(final String messageFormat, final int number, final Token... tokens) {
-        logError(String.format(messageFormat, number), tokens);
+        logError(String.format(LOCALE, messageFormat, number), tokens);
     }
 
     /**
@@ -80,7 +85,7 @@ public class Laconic {
      * @param tokens        The tokens with log messages that are relevant for this error.
      */
     public void logError(final String messageFormat, final long number, final Token... tokens) {
-        logError(String.format(messageFormat, number), tokens);
+        logError(String.format(LOCALE, messageFormat, number), tokens);
     }
 
     /**
@@ -91,7 +96,7 @@ public class Laconic {
      * @param tokens        The tokens with log messages that are relevant for this error.
      */
     public void logError(final String messageFormat, final String text, final Token... tokens) {
-        logError(String.format(messageFormat, text), tokens);
+        logError(String.format(LOCALE, messageFormat, text), tokens);
     }
 
     /**
@@ -133,7 +138,7 @@ public class Laconic {
      * @return A token for this log message.
      */
     public Token logMessage(final String messageFormat, final double number, final Token... tokens) {
-        return logMessage(String.format(messageFormat, number), tokens);
+        return logMessage(String.format(LOCALE, messageFormat, number), tokens);
     }
 
     /**
@@ -145,7 +150,7 @@ public class Laconic {
      * @return A token for this log message.
      */
     public Token logMessage(final String messageFormat, final int number, final Token... tokens) {
-        return logMessage(String.format(messageFormat, number), tokens);
+        return logMessage(String.format(LOCALE, messageFormat, number), tokens);
     }
 
     /**
@@ -157,7 +162,7 @@ public class Laconic {
      * @return A token for this log message.
      */
     public Token logMessage(final String messageFormat, final long number, final Token... tokens) {
-        return logMessage(String.format(messageFormat, number), tokens);
+        return logMessage(String.format(LOCALE, messageFormat, number), tokens);
     }
 
     /**
@@ -169,7 +174,7 @@ public class Laconic {
      * @return A token for this log message.
      */
     public Token logMessage(final String messageFormat, final String text, final Token... tokens) {
-        return logMessage(String.format(messageFormat, text), tokens);
+        return logMessage(String.format(LOCALE, messageFormat, text), tokens);
     }
 
     /**
@@ -195,7 +200,7 @@ public class Laconic {
      * @param number        The double number to be included in the message.
      */
     public void logProgress(final String messageFormat, final double number) {
-        logProgress(String.format(messageFormat, number));
+        logProgress(String.format(LOCALE, messageFormat, number));
     }
 
     /**
@@ -205,7 +210,7 @@ public class Laconic {
      * @param number        The integer number to be included in the message.
      */
     public void logProgress(final String messageFormat, final int number) {
-        logProgress(String.format(messageFormat, number));
+        logProgress(String.format(LOCALE, messageFormat, number));
     }
 
     /**
@@ -215,7 +220,7 @@ public class Laconic {
      * @param number        The long number to be included in the message.
      */
     public void logProgress(final String messageFormat, final long number) {
-        logProgress(String.format(messageFormat, number));
+        logProgress(String.format(LOCALE, messageFormat, number));
     }
 
     /**
@@ -225,7 +230,7 @@ public class Laconic {
      * @param text          The text to be included in the message.
      */
     public void logProgress(final String messageFormat, final String text) {
-        logProgress(String.format(messageFormat, text));
+        logProgress(String.format(LOCALE, messageFormat, text));
     }
 
     /**
