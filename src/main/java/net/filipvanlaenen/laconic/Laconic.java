@@ -277,5 +277,6 @@ public class Laconic {
      */
     public void setPrintStream(final PrintStream printStream) {
         this.printStream = printStream;
+        state = State.EMPTY;
     }
 }
