@@ -29,6 +29,24 @@ public class LaconicTest {
     }
 
     /**
+     * Verifies that a formatted error message can be logged.
+     */
+    @Test
+    public void logErrorShouldLogAFormattedErrorMessage() {
+        Laconic laconic = new Laconic();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        laconic.setPrintStream(printStream);
+        laconic.setPrefixWithTimestamp(false);
+        laconic.logError("Foo %f", 1D);
+        laconic.logError("Foo %d", 1);
+        laconic.logError("Foo %d", 1L);
+        laconic.logError("Foo %s", "bar");
+        String expected = "‡ Foo 1.000000\n\n" + "‡ Foo 1\n\n" + "‡ Foo 1\n\n" + "‡ Foo bar\n";
+        assertEquals(expected, outputStream.toString());
+    }
+
+    /**
      * Verifies that two error messages can be logged.
      */
     @Test
@@ -109,6 +127,20 @@ public class LaconicTest {
     }
 
     /**
+     * Verifies that formatted progress can be logged.
+     */
+    @Test
+    public void logProgressShouldLogFormattedProgress() {
+        Laconic laconic = new Laconic();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        laconic.setPrintStream(printStream);
+        laconic.setPrefixWithTimestamp(false);
+        laconic.logProgress("Foo");
+        assertEquals("Foo\n", outputStream.toString());
+    }
+
+    /**
      * Verifies that progress messages can be logged.
      */
     @Test
@@ -118,9 +150,12 @@ public class LaconicTest {
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
         laconic.setPrefixWithTimestamp(false);
-        laconic.logProgress("Foo");
-        laconic.logProgress("Bar");
-        assertEquals("Foo\nBar\n", outputStream.toString());
+        laconic.logProgress("Foo %f", 1D);
+        laconic.logProgress("Foo %d", 1);
+        laconic.logProgress("Foo %d", 1L);
+        laconic.logProgress("Foo %s", "bar");
+        String expected = "Foo 1.000000\n" + "Foo 1\n" + "Foo 1\n" + "Foo bar\n";
+        assertEquals(expected, outputStream.toString());
     }
 
     /**
@@ -166,5 +201,24 @@ public class LaconicTest {
                 assertTrue(matcher.matches());
             }
         }
+    }
+
+    /**
+     * Verifies that formatted log messages to an error message can be logged.
+     */
+    @Test
+    public void logErrorShouldLogAFormattedMessages() {
+        Laconic laconic = new Laconic();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        laconic.setPrintStream(printStream);
+        laconic.setPrefixWithTimestamp(false);
+        Token token1 = laconic.logMessage("Foo %f", 1D);
+        Token token2 = laconic.logMessage("Foo %d", 1);
+        Token token3 = laconic.logMessage("Foo %d", 1L);
+        Token token4 = laconic.logMessage("Foo %s", "bar");
+        laconic.logError("Baz", token1, token2, token3, token4);
+        String expected = "‡ ⬐ Foo 1.000000\n" + "‡ ⬐ Foo 1\n" + "‡ ⬐ Foo 1\n" + "‡ ⬐ Foo bar\n" + "‡ Baz\n";
+        assertEquals(expected, outputStream.toString());
     }
 }

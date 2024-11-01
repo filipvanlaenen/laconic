@@ -39,7 +39,7 @@ following dependency in the project's POM file:
   <dependency>
     <groupId>net.filipvanlaenen</groupId>
     <artifactId>laconic</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
   </dependency>
 ```
 
@@ -167,3 +167,4 @@ This will print the following messages to `System.err`:
 ## Projects Using Laconic Logging
 
 The following projects use Laconic Logging:
+* [ASAPOP](https://github.com/filipvanlaenen/asapop)

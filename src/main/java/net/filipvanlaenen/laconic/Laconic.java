@@ -51,6 +51,50 @@ public class Laconic {
     private boolean prefixWithTimestamp = true;
 
     /**
+     * Logs an error with a formatted message.
+     *
+     * @param messageFormat The message format describing the error.
+     * @param number        The double to be included in the error message.
+     * @param tokens        The tokens with log messages that are relevant for this error.
+     */
+    public void logError(final String messageFormat, final double number, final Token... tokens) {
+        logError(String.format(messageFormat, number), tokens);
+    }
+
+    /**
+     * Logs an error with a formatted message.
+     *
+     * @param messageFormat The message format describing the error.
+     * @param number        The integer to be included in the error message.
+     * @param tokens        The tokens with log messages that are relevant for this error.
+     */
+    public void logError(final String messageFormat, final int number, final Token... tokens) {
+        logError(String.format(messageFormat, number), tokens);
+    }
+
+    /**
+     * Logs an error with a formatted message.
+     *
+     * @param messageFormat The message format describing the error.
+     * @param number        The long to be included in the error message.
+     * @param tokens        The tokens with log messages that are relevant for this error.
+     */
+    public void logError(final String messageFormat, final long number, final Token... tokens) {
+        logError(String.format(messageFormat, number), tokens);
+    }
+
+    /**
+     * Logs an error with a formatted message.
+     *
+     * @param messageFormat The message format describing the error.
+     * @param text          The text to be included in the error message.
+     * @param tokens        The tokens with log messages that are relevant for this error.
+     */
+    public void logError(final String messageFormat, final String text, final Token... tokens) {
+        logError(String.format(messageFormat, text), tokens);
+    }
+
+    /**
      * Logs an error.
      *
      * @param message The message describing the error.
@@ -81,6 +125,54 @@ public class Laconic {
     }
 
     /**
+     * Logs a formatted message and creates a new token.
+     *
+     * @param messageFormat The message format.
+     * @param number        The double number to be included in the message.
+     * @param tokens        The tokens to which this message should be added.
+     * @return A token for this log message.
+     */
+    public Token logMessage(final String messageFormat, final double number, final Token... tokens) {
+        return logMessage(String.format(messageFormat, number), tokens);
+    }
+
+    /**
+     * Logs a formatted message and creates a new token.
+     *
+     * @param messageFormat The message format.
+     * @param number        The integer number to be included in the message.
+     * @param tokens        The tokens to which this message should be added.
+     * @return A token for this log message.
+     */
+    public Token logMessage(final String messageFormat, final int number, final Token... tokens) {
+        return logMessage(String.format(messageFormat, number), tokens);
+    }
+
+    /**
+     * Logs a formatted message and creates a new token.
+     *
+     * @param messageFormat The message format.
+     * @param number        The long number to be included in the message.
+     * @param tokens        The tokens to which this message should be added.
+     * @return A token for this log message.
+     */
+    public Token logMessage(final String messageFormat, final long number, final Token... tokens) {
+        return logMessage(String.format(messageFormat, number), tokens);
+    }
+
+    /**
+     * Logs a formatted message and creates a new token.
+     *
+     * @param messageFormat The message format.
+     * @param text          The text to be included in the message.
+     * @param tokens        The tokens to which this message should be added.
+     * @return A token for this log message.
+     */
+    public Token logMessage(final String messageFormat, final String text, final Token... tokens) {
+        return logMessage(String.format(messageFormat, text), tokens);
+    }
+
+    /**
      * Logs a message and creates a new token.
      *
      * @param message A message to be logged.
@@ -94,6 +186,46 @@ public class Laconic {
             t.addMessage(message);
         }
         return token;
+    }
+
+    /**
+     * Logs progress with a formatted message.
+     *
+     * @param messageFormat The message format.
+     * @param number        The double number to be included in the message.
+     */
+    public void logProgress(final String messageFormat, final double number) {
+        logProgress(String.format(messageFormat, number));
+    }
+
+    /**
+     * Logs progress with a formatted message.
+     *
+     * @param messageFormat The message format.
+     * @param number        The integer number to be included in the message.
+     */
+    public void logProgress(final String messageFormat, final int number) {
+        logProgress(String.format(messageFormat, number));
+    }
+
+    /**
+     * Logs progress with a formatted message.
+     *
+     * @param messageFormat The message format.
+     * @param number        The long number to be included in the message.
+     */
+    public void logProgress(final String messageFormat, final long number) {
+        logProgress(String.format(messageFormat, number));
+    }
+
+    /**
+     * Logs progress with a formatted message.
+     *
+     * @param messageFormat The message format.
+     * @param text          The text to be included in the message.
+     */
+    public void logProgress(final String messageFormat, final String text) {
+        logProgress(String.format(messageFormat, text));
     }
 
     /**
