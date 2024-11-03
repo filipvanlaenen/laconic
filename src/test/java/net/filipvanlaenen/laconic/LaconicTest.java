@@ -207,7 +207,7 @@ public class LaconicTest {
      * Verifies that formatted log messages to an error message can be logged.
      */
     @Test
-    public void logErrorShouldLogAFormattedMessages() {
+    public void logErrorShouldLogFormattedMessages() {
         Laconic laconic = new Laconic();
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
@@ -219,6 +219,51 @@ public class LaconicTest {
         Token token4 = laconic.logMessage("Foo %s", "bar");
         laconic.logError("Baz", token1, token2, token3, token4);
         String expected = "‡ ⬐ Foo 1.000000\n" + "‡ ⬐ Foo 1\n" + "‡ ⬐ Foo 1\n" + "‡ ⬐ Foo bar\n" + "‡ Baz\n";
+        assertEquals(expected, outputStream.toString());
+    }
+
+    /**
+     * Verifies that a token can be cloned.
+     */
+    @Test
+    public void logMessageShouldCloneAToken() {
+        Laconic laconic = new Laconic();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        laconic.setPrintStream(printStream);
+        laconic.setPrefixWithTimestamp(false);
+        Token token1 = laconic.logMessage("Foo");
+        Token token2 = laconic.logMessage(token1, "Bar");
+        laconic.logError("Baz", token1);
+        laconic.logError("Qux", token2);
+        String expected = "‡ ⬐ Foo\n" + "‡ Baz\n" + "\n" + "‡   Foo\n" + "‡ ⬐ Bar\n" + "‡ Qux\n";
+        assertEquals(expected, outputStream.toString());
+    }
+
+    /**
+     * Verifies that a token can be cloned with a formatted message.
+     */
+    @Test
+    public void logMessageShouldCloneATokenWithAFormattedMessage() {
+        Laconic laconic = new Laconic();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        laconic.setPrintStream(printStream);
+        laconic.setPrefixWithTimestamp(false);
+        Token token1 = laconic.logMessage("Foo");
+        Token token2 = laconic.logMessage(token1, "Foo %f", 1D);
+        Token token3 = laconic.logMessage(token1, "Foo %d", 1);
+        Token token4 = laconic.logMessage(token1, "Foo %d", 1L);
+        Token token5 = laconic.logMessage(token1, "Foo %s", "bar");
+        laconic.logError("Bar", token1);
+        laconic.logError("Baz", token2);
+        laconic.logError("Qux", token3);
+        laconic.logError("Quux", token4);
+        laconic.logError("Thud", token5);
+        String expected = "‡ ⬐ Foo\n" + "‡ Bar\n" + "\n" + "‡   Foo\n" + "‡ ⬐ Foo 1.000000\n" + "‡ Baz\n" + "\n"
+                + "‡   Foo\n" + "‡ ⬐ Foo 1\n" + "‡ Qux\n" + "\n" + "‡   Foo\n" + "‡ ⬐ Foo 1\n" + "‡ Quux\n" + "\n"
+                + "‡   Foo\n" + "‡ ⬐ Foo bar\n" + "‡ Thud\n";
+        ;
         assertEquals(expected, outputStream.toString());
     }
 }
