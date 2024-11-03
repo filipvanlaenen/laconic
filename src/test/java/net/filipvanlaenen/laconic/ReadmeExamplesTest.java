@@ -107,7 +107,29 @@ public class ReadmeExamplesTest {
         PrintStream printStream = new PrintStream(outputStream);
         laconic.setPrintStream(printStream);
         laconic.setPrefixWithTimestamp(PREFIX_WITH_TIMESTAMP);
-        // Start README example 2
+        // Start README example 5
+        Token token1 = laconic.logMessage("Something happened.");
+        Token token2 = laconic.logMessage(token1, "Something else happened.");
+
+        laconic.logError("Something went wrong.", token1);
+
+        laconic.logError("Something else went wrong.", token2);
+        // End README example 5
+        assertEquals("‡ ⬐ Something happened.\n" + "‡ Something went wrong.\n" + "\n" + "‡   Something happened.\n"
+                + "‡ ⬐ Something else happened.\n" + "‡ Something else went wrong.\n", outputStream.toString());
+    }
+
+    /**
+     * README example 6.
+     */
+    @Test
+    public void readmeExample6() {
+        Laconic laconic = new Laconic();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        laconic.setPrintStream(printStream);
+        laconic.setPrefixWithTimestamp(PREFIX_WITH_TIMESTAMP);
+        // Start README example 6
         laconic.logProgress("Starting.");
 
         laconic.logProgress("Doing some work.");

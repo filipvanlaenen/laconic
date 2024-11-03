@@ -132,6 +132,31 @@ This will print the following messages to `System.err`:
 2024-10-17T10:09:51.437+02:00 ‡ Something else went wrong.
 ```
 
+Finally, sometimes there's a branch, and log messages on one branch shouldn't be logged on the other branch:
+
+```java
+  import net.filipvanlaenen.laconic.Laconic;
+  import net.filipvanlaenen.laconic.Token;
+
+  Token token1 = Laconic.LOGGER.logMessage("Something happened.");
+  Token token2 = Laconic.LOGGER.logMessage(token1, "Something else happened.");
+ 
+  Laconic.LOGGER.logError("Something went wrong.", token1);
+
+  Laconic.LOGGER.logError("Something else went wrong.", token2);
+```
+
+This will print the following messages to `System.err`:
+
+```
+2024-11-03T21:12:55.668+01:00 ‡ ⬐ Something happened.
+2024-11-03T21:12:55.668+01:00 ‡ Something went wrong.
+
+2024-11-03T21:12:55.668+01:00 ‡   Something happened.
+2024-11-03T21:12:55.668+01:00 ‡ ⬐ Something else happened.
+2024-11-03T21:12:55.668+01:00 ‡ Something else went wrong.
+```
+
 ## Logging Progress
 
 Sometimes you want to log progress, regardless of whether an error has occured or not. This can be done as follows:
