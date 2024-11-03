@@ -20,6 +20,29 @@ public class TokenTest {
     }
 
     /**
+     * Verifies that when a token is cloned, the original token doesn't receive the messages on the new token.
+     */
+    @Test
+    public void getMessagesIsEmptyOnOriginalTokenAfterAMessageIsAddedToTheClonedToken() {
+        Token originalToken = new Token();
+        Token newToken = new Token(originalToken);
+        newToken.addMessage("Something happend.");
+        assertTrue(originalToken.getMessages().isEmpty());
+    }
+
+    /**
+     * Verifies that when a token is cloned, the new token inherits all the messages.
+     */
+    @Test
+    public void getMessagesReturnsAllTheMessagesFromTheOriginalTokenAfterCloning() {
+        Token originalToken = new Token();
+        originalToken.addMessage("Something happend.");
+        Token newToken = new Token(originalToken);
+        OrderedCollection<Message> messages = newToken.getMessages();
+        assertEquals("Something happend.", messages.getAt(0).message());
+    }
+
+    /**
      * Verifies that when a message has been added to a token, it is returned by getMessages.
      */
     @Test
