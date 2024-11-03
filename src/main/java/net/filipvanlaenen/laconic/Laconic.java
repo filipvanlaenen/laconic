@@ -194,6 +194,79 @@ public class Laconic {
     }
 
     /**
+     * Clones a token and logs a formatted message.
+     *
+     * @param sourceToken   The token to be cloned.
+     * @param messageFormat The message format.
+     * @param number        The double number to be included in the message.
+     * @param tokens        The tokens to which this message should be added.
+     * @return A token for this log message.
+     */
+    public Token logMessage(final Token sourceToken, final String messageFormat, final double number,
+            final Token... tokens) {
+        return logMessage(sourceToken, String.format(LOCALE, messageFormat, number), tokens);
+    }
+
+    /**
+     * Clones a token and logs a formatted message.
+     *
+     * @param sourceToken   The token to be cloned.
+     * @param messageFormat The message format.
+     * @param number        The integer number to be included in the message.
+     * @param tokens        The tokens to which this message should be added.
+     * @return A token for this log message.
+     */
+    public Token logMessage(final Token sourceToken, final String messageFormat, final int number,
+            final Token... tokens) {
+        return logMessage(sourceToken, String.format(LOCALE, messageFormat, number), tokens);
+    }
+
+    /**
+     * Clones a token and logs a formatted message.
+     *
+     * @param sourceToken   The token to be cloned.
+     * @param messageFormat The message format.
+     * @param number        The long number to be included in the message.
+     * @param tokens        The tokens to which this message should be added.
+     * @return A token for this log message.
+     */
+    public Token logMessage(final Token sourceToken, final String messageFormat, final long number,
+            final Token... tokens) {
+        return logMessage(sourceToken, String.format(LOCALE, messageFormat, number), tokens);
+    }
+
+    /**
+     * Clones a token and logs a formatted message.
+     *
+     * @param sourceToken   The token to be cloned.
+     * @param messageFormat The message format.
+     * @param text          The text to be included in the message.
+     * @param tokens        The tokens to which this message should be added.
+     * @return A token for this log message.
+     */
+    public Token logMessage(final Token sourceToken, final String messageFormat, final String text,
+            final Token... tokens) {
+        return logMessage(sourceToken, String.format(LOCALE, messageFormat, text), tokens);
+    }
+
+    /**
+     * Clones a token and logs a message.
+     *
+     * @param sourceToken The token to be cloned.
+     * @param message     A message to be logged.
+     * @param tokens      The tokens to which this message should be added.
+     * @return A token for this log message.
+     */
+    public Token logMessage(final Token sourceToken, final String message, final Token... tokens) {
+        Token token = new Token(sourceToken);
+        token.addMessage(message);
+        for (Token t : tokens) {
+            t.addMessage(message);
+        }
+        return token;
+    }
+
+    /**
      * Logs progress with a formatted message.
      *
      * @param messageFormat The message format.

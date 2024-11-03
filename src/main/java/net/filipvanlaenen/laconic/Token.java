@@ -12,7 +12,23 @@ public class Token {
     /**
      * The messages logged to this token.
      */
-    private ModifiableOrderedCollection<Message> messages = new ModifiableOrderedArrayCollection<Message>();
+    private final ModifiableOrderedCollection<Message> messages;
+
+    /**
+     * Default constructor creating a new token.
+     */
+    Token() {
+        messages = new ModifiableOrderedArrayCollection<Message>();
+    }
+
+    /**
+     * Constructor creating a new token based on a source token.
+     *
+     * @param sourceToken The token to be cloned.
+     */
+    Token(final Token sourceToken) {
+        messages = new ModifiableOrderedArrayCollection<Message>(sourceToken.getMessages());
+    }
 
     /**
      * Adds a message to this token.

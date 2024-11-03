@@ -39,7 +39,7 @@ following dependency in the project's POM file:
   <dependency>
     <groupId>net.filipvanlaenen</groupId>
     <artifactId>laconic</artifactId>
-    <version>1.1.2</version>
+    <version>1.2.0</version>
   </dependency>
 ```
 
