@@ -233,10 +233,13 @@ public class LaconicTest {
         laconic.setPrintStream(printStream);
         laconic.setPrefixWithTimestamp(false);
         Token token1 = laconic.logMessage("Foo");
-        Token token2 = laconic.logMessage(token1, "Bar");
+        Token token2 = laconic.logMessage("Quux");
+        Token token3 = laconic.logMessage(token1, "Bar", token2);
         laconic.logError("Baz", token1);
-        laconic.logError("Qux", token2);
-        String expected = "‡ ⬐ Foo\n" + "‡ Baz\n" + "\n" + "‡   Foo\n" + "‡ ⬐ Bar\n" + "‡ Qux\n";
+        laconic.logError("Thud", token2);
+        laconic.logError("Qux", token3);
+        String expected = "‡ ⬐ Foo\n" + "‡ Baz\n" + "\n" + "‡   Quux\n" + "‡ ⬐ Bar\n" + "‡ Thud\n" + "\n" + "‡   Foo\n"
+                + "‡ ⬐ Bar\n" + "‡ Qux\n";
         assertEquals(expected, outputStream.toString());
     }
 
