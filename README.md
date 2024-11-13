@@ -192,4 +192,7 @@ This will print the following messages to `System.err`:
 ## Projects Using Laconic Logging
 
 The following projects use Laconic Logging:
+
 * [ASAPOP](https://github.com/filipvanlaenen/asapop)
+* [IACAJ](https://github.com/filipvanlaenen/iacaj)
+* [jCRK](https://github.com/filipvanlaenen/jcrk)
